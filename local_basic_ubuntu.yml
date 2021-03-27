@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  become: true
+  tasks: 
+    - name: Install packages
+      apt: 
+        name: 
+          - git
+          - vim
+
