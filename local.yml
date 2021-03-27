@@ -8,6 +8,13 @@
           - git
           - vim
           - tmux
+          - bmon
+          - ntpdate
+          - python-pip
+          - lynx
+          - rsync
+          - nfs-common
+          - qemu-guest-agent
     - name: copy test file
       copy: 
         src: test_file.txt
