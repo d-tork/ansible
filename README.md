@@ -7,3 +7,8 @@ server
 3. add client ip(s) to server hosts
 4. run `ansible-playbook [playbook.yml]`
 
+## To pull, from client
+```
+sudo su - ansible
+ansible-pull -o -U https://github.com/d-tork/ansible.git
+```
