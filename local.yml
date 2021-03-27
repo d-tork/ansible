@@ -8,4 +8,8 @@
           - git
           - vim
           - tmux
+    - name: copy test file
+      copy: 
+        src: test_file.txt
+        dest: /home/ansible/test_file_success.txt
 
