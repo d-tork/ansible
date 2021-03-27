@@ -10,7 +10,7 @@
           - tmux
           - bmon
           - ntpdate
-          - python-pip
+          - python3-pip
           - lynx
           - rsync
           - nfs-common
