@@ -36,4 +36,7 @@ chmod 440 /etc/sudoers.d/ansible
 DEBIAN_FRONTEND=noninteractive
 apt-get -yq install ansible
 
-# TODO: add cron job to ansible-pull
+# Pull base playbook from github
+sudo su - ansible
+ansible-pull -o -U https://github.com/d-tork/ansible.git
+
