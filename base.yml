@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+    - name: update & upgrade
+      apt: 
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400  # one day
+    - name: Install packages
+      apt: 
+        name: 
+          - git
+          - vim
+          - tmux
+          - bmon
+          - ntpdate
+          - python3-pip
+          - lynx
+          - rsync
+          - nfs-common
+          - qemu-guest-agent
+    - name: copy test file
+      copy: 
+        src: test_file.txt
+        dest: /home/ansible/test_file_success.txt
+
