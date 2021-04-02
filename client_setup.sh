@@ -10,6 +10,7 @@
 [[ $EUID -ne 0 ]] && echo "This script must be run as root." && exit 1
 
 useradd -m ansible -G sudo
+echo "Set password for ansible user:"
 passwd ansible
 # TODO: pass perl-encrypted password hash to the useradd command
 # 	since it remains the same across all clients
@@ -21,6 +22,8 @@ passwd ansible
 # 	regex pattern is the first group of digits and periods
 ip_addr=$(hostname -I | sed -r 's/^([[:digit:]\.]+)\s.*$/\1/')
 echo "This client's ip: $ip_addr"
+echo "Log into Ansible central node and run the following:\n"
+echo "\tssh-copy-id -i ~/.ssh/id_rsa.pub $ip_addr\n"
 read -p 'Press enter once SSH key has been copied to client...'
 
 # TODO: ensure PasswordAuthentication is set to yes in sshd_config
@@ -37,6 +40,5 @@ DEBIAN_FRONTEND=noninteractive
 apt-get -yq install ansible
 
 # Pull base playbook from github
-sudo su - ansible
-ansible-pull -o -U https://github.com/d-tork/ansible.git
+sudo su - ansible ansible-pull -o -U https://github.com/d-tork/ansible.git
 
