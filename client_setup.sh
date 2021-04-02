@@ -39,5 +39,5 @@ DEBIAN_FRONTEND=noninteractive
 apt-get -yq install ansible
 
 # Pull base playbook from github
-runuser -u ansible -c 'ansible-pull -o -U https://github.com/d-tork/ansible.git'
+runuser -u ansible -- 'ansible-pull -o -U https://github.com/d-tork/ansible.git'
 
