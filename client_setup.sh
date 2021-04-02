@@ -21,9 +21,8 @@ passwd ansible
 # Show this computer's IP address and wait: 
 # 	regex pattern is the first group of digits and periods
 ip_addr=$(hostname -I | sed -r 's/^([[:digit:]\.]+)\s.*$/\1/')
-echo "This client's ip: $ip_addr"
-echo "Log into Ansible central node and run the following:\n"
-echo "\tssh-copy-id -i ~/.ssh/id_rsa.pub $ip_addr\n"
+echo -e "Log into Ansible central node and run the following:\n"
+echo -e "\tssh-copy-id -i ~/.ssh/id_rsa.pub $ip_addr\n"
 read -p 'Press enter once SSH key has been copied to client...'
 
 # TODO: ensure PasswordAuthentication is set to yes in sshd_config
