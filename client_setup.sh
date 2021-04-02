@@ -9,7 +9,7 @@
 # Checks that user is sudoer
 [[ $EUID -ne 0 ]] && echo "This script must be run as root." && exit 1
 
-useradd -m ansible -G sudo
+useradd -m -s /bin/bash -G sudo ansible 
 echo "Set password for ansible user:"
 passwd ansible
 # TODO: pass perl-encrypted password hash to the useradd command
@@ -39,5 +39,5 @@ DEBIAN_FRONTEND=noninteractive
 apt-get -yq install ansible
 
 # Pull base playbook from github
-sudo su - ansible ansible-pull -o -U https://github.com/d-tork/ansible.git
+runuser -u ansible -c 'ansible-pull -o -U https://github.com/d-tork/ansible.git'
 
