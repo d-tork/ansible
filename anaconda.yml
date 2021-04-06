@@ -1,0 +1,5 @@
+---
+- hosts: stubbs
+  roles:
+    - { role: andrewrothstein.anaconda }
+  become: true
