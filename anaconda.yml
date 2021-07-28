@@ -1,5 +1,27 @@
 ---
 - hosts: stubbs
-  roles:
-    - { role: andrewrothstein.anaconda }
   become: true
+  tasks:
+    - name: Install pre-requisites
+      apt: 
+        name: 
+          - python3.8
+          - libgl1-mesa-glx 
+          - libegl1-mesa 
+          - libxrandr2 
+          - libxrandr2 
+          - libxss1 
+          - libxcursor1 
+          - libxcomposite1 
+          - libasound2 
+          - libxi6 
+          - libxtst6
+    - name: Download Anaconda installer
+      get_url:
+        url: https://repo.anaconda.com/archive/Anaconda3-2020.11-Linux-x86_64.sh
+        dest: /home/ansible/Anaconda3-2020.11-Linux-x86_64.sh
+        mode: '0555'
+        checksum: sha256:cf2ff493f11eaad5d09ce2b4feaa5ea90db5174303d5b3fe030e16d29aeef7de
+    - name: Run installer
+      become_user: ansible
+      ansible.builtin.shell: bash /home/ansible/Anaconda3-2020.11-Linux-x86_64.sh
