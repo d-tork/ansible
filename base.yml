@@ -20,6 +20,8 @@
           - rsync
           - nfs-common
           - qemu-guest-agent
+          - net-tools
+          - mlocate
     - name: copy test file
       copy: 
         src: test_file.txt
