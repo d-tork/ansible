@@ -22,6 +22,7 @@
           - qemu-guest-agent
           - net-tools
           - mlocate
+          - xrdp
     - name: copy test file
       copy: 
         src: test_file.txt
