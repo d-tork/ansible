@@ -30,7 +30,7 @@ read -p 'Press enter once SSH key has been copied to client...'
 #	echoed the line to be appended to the config file? 
 
 # Configure sudo so ansible user can execute commands
-echo 'ansible ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/ansible
+echo 'ansible ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/ansible
 chown root:root /etc/sudoers.d/ansible
 chmod 440 /etc/sudoers.d/ansible
 
