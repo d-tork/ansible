@@ -12,11 +12,8 @@
         name: 
           - git
           - vim
-          - tmux
-          - bmon
-          - ntpdate
+          - python3
           - python3-pip
-          - lynx
           - rsync
           - nfs-common
           - qemu-guest-agent
