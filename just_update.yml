@@ -1,9 +1,9 @@
 ---
 - hosts: all
-  become: 'True'
+  become: True
   tasks: 
     - name: update & upgrade
       apt: 
         update_cache: yes
         cache_valid_time: 86400  # one day
-        upgrade: yes
+        upgrade: "yes"
