@@ -36,7 +36,7 @@ chmod 440 /etc/sudoers.d/ansible
 
 # Install ansible so that it can pull from git
 DEBIAN_FRONTEND=noninteractive
-apt-get -yq install ansible git ansible-pull
+apt-get -yq install ansible git ansible
 
 # Pull base playbook from github
 runuser -u ansible -- ansible-pull -o -U https://github.com/d-tork/ansible.git
