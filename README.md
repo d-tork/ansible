@@ -14,6 +14,7 @@ server
 ### Detailed instructions
 On a new client:
 ```
+sudo apt update && sudo apt install ansible-pull
 wget https://raw.githubusercontent.com/d-tork/ansible/main/client_setup.sh
 chmod +x client_setup.sh
 sudo ./client_setup.sh
