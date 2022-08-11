@@ -19,6 +19,7 @@
           - qemu-guest-agent
           - net-tools
           - mlocate
+          - unattended-upgrades
     - name: copy test file
       copy: 
         src: test_file.txt
