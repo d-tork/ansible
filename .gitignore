@@ -1,0 +1,4 @@
+*.sw*
+
+# Roles already controlled by version control
+roles/*/

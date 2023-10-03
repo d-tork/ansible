@@ -1,0 +1,25 @@
+---
+- name: Install desired software.
+  hosts: all
+  become: true
+  tasks: 
+    - name: Update repositories.
+      ansible.builtin.apt: 
+        update_cache: yes
+        cache_valid_time: 86400  # one day
+    - name: Install common software.
+      ansible.builtin.apt: 
+        name: 
+          - git
+          - vim
+          - python3
+          - python3-pip
+          - rsync
+          - nfs-common
+          - qemu-guest-agent
+          - net-tools
+          - unattended-upgrades  # move to security role, also add open-ssh-server
+    - name: Install extra software.
+      ansible.builtin.apt: 
+        name: 
+          - mlocate  # easier version of `find`

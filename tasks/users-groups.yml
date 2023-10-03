@@ -1,0 +1,46 @@
+---
+# for all, use ansible.builtin.user module
+# perhaps much of this should be handled per-service, i.e. when installing docker,
+#   add users to docker group specified by variable; when installing plex, create
+#   plex user. 
+# This playbook should handle all other user/group assignments OUTSIDE of specific
+# services, e.g. my 'media' group, giving sudo privileges, and creating the ansible 
+# user.
+
+- name: Create ansible user.
+  ansible.builtin.user:
+    name: ansible
+    password: '{{ ansible_user_password }}'
+    uid: 1011
+    shell: /bin/bash
+    groups: [sudo]
+    append: true
+
+- name: Create ssh group. 
+  ansible.builtin.group:
+    name: ssh
+    gid: 990
+    state: present
+
+- name: Add users to ssh group.
+  ansible.builtin.user:
+    name: '{{ item }}'
+    groups: [ssh]
+    append: true
+  with_items:
+    - ansible
+    - '{{ primary_user }}'
+
+- name: Add docker users to docker group.
+  # TODO move to a docker install role
+  ansible.builtin.command: "echo usermod -aG docker"
+
+- name: Create media group.  # TODO 
+  ansible.builtin.command: "echo groupadd --gid 1010 media"
+
+- name: Add users to media group.  # TODO loop through users
+  ansible.builtin.command: "echo usermod -aG media"
+
+- name: Create plex user.
+  # TODO move to a plex install role
+  ansible.builtin.command: "echo useradd --uid 998 --gid 998 --no-create-home plex"

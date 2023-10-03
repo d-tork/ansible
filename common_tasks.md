@@ -1,23 +1,23 @@
 # Common Ansible tasks
 
-## Update all machines that are ansible-ready
+## Update all linux servers
 
-	ansible-playbook just_update.yml -l working
+	ansible-playbook playbooks/software_updates.yml -l linux
 
 ## Update single machine
 
-	ansible-playbook just_update.yml -i bernard,
+	ansible-playbook playbooks/software_updates.yml -i dolores,
 
 ## Ping machines
 
-	ansible bernard -m ping
+	ansible dolores -m ping
 
-	ansible working -m ping
+	ansible linux -m ping
 
 ## Send specific commands
 
-	ansible working -a "cat /etc/os-release"
+	ansible dolores -a "cat /etc/os-release"
 
 ## Send special commands requiring 'become'
 
-	ansible charlotte -a "shutdown +1" -b
+	ansible dolores -a "shutdown +1" -b
