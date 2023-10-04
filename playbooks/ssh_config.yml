@@ -1,0 +1,51 @@
+---
+- name: Add authorized ssh keys.
+  hosts: all
+  become: true
+
+  vars_files:
+    - ../vars/main.yml
+
+  tasks: 
+    - name: Add authorized ssh keys from public_keys dir for ansible.
+      ansible.posix.authorized_key:
+        user: ansible
+        state: present
+        key: '{{ item }}'
+      with_file:
+        - public_keys/charlotte
+        - public_keys/rehoboam
+
+    - name: Add authorized ssh keys from public_keys dir for me.
+      ansible.posix.authorized_key:
+        user: '{{ primary_user }}'
+        state: present
+        key: '{{ item }}'
+      with_file:
+        - public_keys/charlotte
+        - public_keys/the-spine
+        - public_keys/rehoboam
+        #- public_keys/the-tern
+
+- name: Add ssh config for outgoing connections. 
+  hosts: hale  # or whatever the jump box will be
+  become: false
+  remote_user: '{{ primary_user }}'
+  tags: [future]
+
+  vars_files:
+    - vars/main.yml
+
+  tasks:
+    - name: Add ssh connections default config.
+      community.general.ssh_config:
+        host: "*"
+        user: '{{ primary_user }}'
+        identity_file: "/home/{{ primary_user }}/.ssh/id_rsa.pub"
+
+    - name: Add ssh connections to dolores.
+      community.general.ssh_config:
+        host: dolores
+        hostname: 192.168.1.247
+        user: '{{ primary_user }}'
+        port: 4100

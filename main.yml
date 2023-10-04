@@ -1,0 +1,27 @@
+---
+- name: Configure Ubuntu servers.
+  hosts: all
+  become: true
+
+  vars_files:
+    - vars/main.yml
+    - vars/vault.yml
+
+  tasks: 
+    - name: Manage users and groups.
+      ansible.builtin.import_tasks: tasks/users-groups.yml
+
+    - name: Update all packages.
+      tags: [vagrantskip]
+      ansible.builtin.apt: 
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400  # one day
+
+    - name: Harden security with role.
+      ansible.builtin.include_role:
+        name: roles/security
+
+- ansible.builtin.import_playbook: playbooks/ssh_config.yml
+- ansible.builtin.import_playbook: playbooks/software.yml
+- ansible.builtin.import_playbook: playbooks/dotfiles.yml
