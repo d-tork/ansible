@@ -2,25 +2,23 @@
 ---
 - name: Set up my dotfiles.
   hosts: all
-  become: false
+  become: true
   vars_files:
     - ../vars/main.yml
-
+  vars:
+    git_global_config_path: '/home/{{ primary_user }}/.gitconfig'
+    dotfiles_repo_local_dir: "/home/{{ primary_user }}/dotfiles"
   remote_user: '{{ primary_user }}'
 
   tasks: 
-    - name: Get location of git executable.
-      ansible.builtin.shell: "which git"
-      register: git_location
-    - name: Create config alias.
-      tags: [future]
-      ansible.builtin.lineinfile:
-        state: present
-        line: 'alias config="{{ git_location }} --git-dir=$HOME/.cfg/ --work-tree=$HOME"'
-        path: "~/.bashrc"
-    - name: Clone dotfiles repo.
-      # TODO use ansible.builtin.git
-      ansible.builtin.command: "echo cloning dotfiles repo"
-    - name: Configure git user.
-      # TODO use community.general.git_config
-      ansible.builtin.command: "echo setting up git config"
+    - name: Set global (user) git config.
+      ansible.builtin.include_tasks: ../tasks/git_config.yml
+
+  post_tasks:
+    - name: Set user ownership of gitconfig.
+      ansible.builtin.file:
+        path: '{{ git_global_config_path }}'
+        state: file
+        owner: '{{ primary_user }}'
+        group: '{{ primary_user }}'
+

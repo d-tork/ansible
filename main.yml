@@ -20,7 +20,7 @@
 
     - name: Harden security with role.
       ansible.builtin.include_role:
-        name: roles/security
+        name: d-tork.security
 
 - ansible.builtin.import_playbook: playbooks/ssh_config.yml
 - ansible.builtin.import_playbook: playbooks/software.yml

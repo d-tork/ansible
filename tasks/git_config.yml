@@ -1,0 +1,43 @@
+---
+- name: Add git aliases.
+  community.general.git_config:
+    scope: file
+    file: '{{ git_global_config_path }}'
+    name: 'alias.{{ item.alias }}'
+    value: '{{ item.command }}'
+  loop:
+    - { alias: 'st', command: 'status' }
+    - { alias: 'ci', command: 'commit' }
+    - { alias: 'co', command: 'checkout' }
+    - { alias: 'br', command: 'branch' }
+    - { alias: 'adog', command: 'log --all --decorate --oneline --graph' }
+
+- name: Set global git config.
+  community.general.git_config:
+    scope: file
+    file: '{{ git_global_config_path }}'
+    name: '{{ item.option }}'
+    value: '{{ item.value }}'
+  loop:
+    - { option: 'core.editor', value: 'vim' }
+    - { option: 'core.autocrlf', value: 'input' }
+    - { option: 'pager.branch', value: 'false' }
+    - { option: 'pager.diff', value: 'true' }
+    - { option: 'pull.rebase', value: 'false' }
+
+- name: Set git user config.
+  community.general.git_config:
+    scope: file
+    file: '{{ git_global_config_path }}'
+    name: '{{ item.option }}'
+    value: '{{ item.value }}'
+  loop:
+    - { option: 'user.email', value: '{{ primary_user }}@{{ ansible_fqdn }}' }
+    - { option: 'user.name', value: '{{ primary_user }}' }
+
+- name: Allow future updating of dotfiles repo with dubious ownership.
+  community.general.git_config:
+    scope: file
+    file: '{{ git_global_config_path }}'
+    name: safe.directory
+    value: '{{ dotfiles_repo_local_dir }}'
