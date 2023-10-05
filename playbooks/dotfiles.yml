@@ -1,23 +1,33 @@
 ---
-- name: Set up my dotfiles.
-  hosts: all
-  become: true
-  vars_files:
-    - ../vars/main.yml
-  vars:
-    git_global_config_path: '/home/{{ primary_user }}/.gitconfig'
-    dotfiles_repo_local_dir: "/home/{{ primary_user }}/dotfiles"
-  remote_user: '{{ primary_user }}'
+- name: Manage dotfiles with git repo as yourself.
+  hosts: dolores
+  roles:
+    - role: geerlingguy.dotfiles
+      vars:
+        dotfiles_repo: "https://github.com/d-tork/dotfiles"
+        dotfiles_repo_version: ubuntu
+        dotfiles_repo_local_destination: '~/dotfiles'
+        dotfiles_files:
+          - .bash_aliases
+          - .bash_profile
+          - .bashrc
+          - .inputrc
+          - .tmux.conf
+          - .vimrc
 
-  tasks: 
-    - name: Set global (user) git config.
-      ansible.builtin.include_tasks: ../tasks/git_config.yml
-
-  post_tasks:
-    - name: Set user ownership of gitconfig.
-      ansible.builtin.file:
-        path: '{{ git_global_config_path }}'
-        state: file
-        owner: '{{ primary_user }}'
-        group: '{{ primary_user }}'
-
+- name: Manage dotfiles with git repo on worker nodes.
+  tags: [future]
+  hosts: charlotte
+  roles:
+    - role: geerlingguy.dotfiles
+      vars:
+        dotfiles_repo: "https://github.com/d-tork/dotfiles"
+        dotfiles_repo_version: servers
+        dotfiles_repo_local_destination: '~/dotfiles'
+        dotfiles_files:
+          - .bash_aliases
+          - .bash_profile
+          - .bashrc
+          - .inputrc
+          - .tmux.conf
+          - .vimrc
