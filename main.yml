@@ -12,6 +12,7 @@
       ansible.builtin.import_tasks: tasks/users-groups.yml
 
     - name: Harden security with role.
+      tags: [security]
       ansible.builtin.include_role:
         name: d-tork.security
 

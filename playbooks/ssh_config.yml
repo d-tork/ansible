@@ -1,5 +1,6 @@
 ---
 - name: Add authorized ssh keys.
+  tags: [security]
   hosts: all
   become: true
 
