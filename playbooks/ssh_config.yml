@@ -28,13 +28,18 @@
         #- public_keys/the-tern
 
 - name: Add ssh config for outgoing connections. 
-  hosts: hale  # or whatever the jump box will be
-  become: false
-  remote_user: '{{ primary_user }}'
-  tags: [future]
-
+  hosts: hale
+  become: true
   vars_files:
-    - vars/main.yml
+    - ../vars/main.yml
+  remote_user: '{{ primary_user }}'
+
+  pre_tasks:
+    - name: Ensure paramiko is installed.
+      ansible.builtin.pip:
+        executable: /usr/bin/pip3
+        name: paramiko
+        state: present
 
   tasks:
     - name: Add ssh connections default config.
