@@ -1,0 +1,5 @@
+---
+# Portainer vars
+
+admin_user: halpoins
+admin_password: '{{ vault_portainer_admin_password }}'

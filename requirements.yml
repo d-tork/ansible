@@ -10,3 +10,6 @@
   src: https://github.com/d-tork/ansible-role-plex
 - name: plexupdate
   src: https://github.com/d-tork/ansible-role-plexupdate
+
+- name: portainer
+  src: https://github.com/shelleg/ansible-role-portainer

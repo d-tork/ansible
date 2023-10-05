@@ -1,0 +1,14 @@
+---
+- hosts: charlotte
+  become: true
+  vars:
+  vars_files:
+    - ../vars/portainer.yml
+
+  pre_tasks:
+    - ansible.builtin.pip:
+        name: requests
+        state: present
+
+  roles:
+   - portainer

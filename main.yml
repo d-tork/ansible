@@ -21,3 +21,5 @@
 - ansible.builtin.import_playbook: playbooks/software.yml
 - ansible.builtin.import_playbook: playbooks/gitconfig.yml
 - ansible.builtin.import_playbook: playbooks/dotfiles.yml
+- ansible.builtin.import_playbook: playbooks/portainer.yml
+
