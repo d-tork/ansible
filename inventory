@@ -4,7 +4,10 @@
 ansible_user=dtork 
 
 [cr1b]
-dolores			ansible_connection=local  # remember to set this name in /etc/hosts
+dolores			ansible_connection=local
+charlotte
+
+[servers]
 charlotte
 
 [cr4dl_active]
