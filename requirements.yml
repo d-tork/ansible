@@ -1,6 +1,7 @@
 ---
 # from galaxy
 - name: geerlingguy.docker
+- name: geerlingguy.dotfiles
 
 # from Github
 - name: d-tork.security
@@ -9,5 +10,3 @@
   src: https://github.com/d-tork/ansible-role-plex
 - name: plexupdate
   src: https://github.com/d-tork/ansible-role-plexupdate
-- name: d-tork.dotfiles
-  src: https://github.com/d-tork/ansible-role-dotfiles
