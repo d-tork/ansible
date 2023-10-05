@@ -11,23 +11,23 @@
           - .bash_aliases
           - .bash_profile
           - .bashrc
+          - .gitignore_global
           - .inputrc
           - .tmux.conf
           - .vimrc
 
 - name: Manage dotfiles with git repo on worker nodes.
-  tags: [future]
   hosts: charlotte
   roles:
     - role: geerlingguy.dotfiles
       vars:
         dotfiles_repo: "https://github.com/d-tork/dotfiles"
-        dotfiles_repo_version: servers
+        dotfiles_repo_version: ubuntu
         dotfiles_repo_local_destination: '~/dotfiles'
         dotfiles_files:
           - .bash_aliases
           - .bash_profile
           - .bashrc
+          - .gitignore_global
           - .inputrc
-          - .tmux.conf
           - .vimrc

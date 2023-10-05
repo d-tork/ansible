@@ -10,6 +10,7 @@
 - name: Create ansible user.
   ansible.builtin.user:
     name: ansible
+    group: ansible
     password: '{{ ansible_user_password }}'
     uid: 1011
     shell: /bin/bash
@@ -31,11 +32,12 @@
     - ansible
     - '{{ primary_user }}'
 
-- name: Create media group. 
-  ansible.builtin.group:
+- name: Create media user. 
+  ansible.builtin.user:
     name: media
-    gid: 1010
+    uid: 1010
     state: present
+    create_home: false
 
 - name: Add users to ssh group.
   ansible.builtin.user:
