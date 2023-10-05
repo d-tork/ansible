@@ -10,6 +10,7 @@
 - name: Create ansible user.
   ansible.builtin.user:
     name: ansible
+    group: ansible
     password: '{{ ansible_user_password }}'
     uid: 1011
     shell: /bin/bash
