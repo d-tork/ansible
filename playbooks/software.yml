@@ -49,6 +49,7 @@
           - ansible-lint
 
 - name: Install Plex server. 
+  tags: [plex, media]
   hosts: charlotte
   become: true
   vars_files:
