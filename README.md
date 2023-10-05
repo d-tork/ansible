@@ -19,7 +19,10 @@ new_server_alias
 ansible-playbook -l presecurity --skip-tags future main.yml
 ```
 
-If successful, the server should not longer be accessble via ssh on port 22; update `~/.ssh/config` and move the server to another group in the inventory.
+If successful, the server should not longer be accessible via ssh on port 22; update `~/.ssh/config` and move the server to another group in the inventory.
+
+## NOT Automated
+* `playbooks/dotfiles.yml` : needs to be run as the primary user (yourself) to install dotfiles for you rather than for `ansible` user
 
 ## Dev notes
 
