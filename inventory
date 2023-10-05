@@ -6,10 +6,11 @@ ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 ansible_become_pass=vagrant
 
 [cr1b]
-charlotte			ansible_connection=local  # remember to set this name in /etc/hosts
+dolores			ansible_connection=local  # remember to set this name in /etc/hosts
+# charlotte
 
 [cr4dl-active]
-dolores
+#dolores
 bernard
 clementine
 sizemore
