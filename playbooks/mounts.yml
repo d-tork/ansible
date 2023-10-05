@@ -1,5 +1,5 @@
 ---
-- name: Add permanent mounts.
+- name: Add permanent mounts to servers.
   hosts: charlotte
   become: true
 
@@ -16,6 +16,43 @@
       ansible.posix.mount:
         src: cr4dl:/tank/media
         path: /mnt/tankmedia
+        fstype: nfs4
+        opts: defaults
+        state: mounted
+
+    - name: Add Holocron backup mount. 
+      ansible.posix.mount:
+        src: the-holocron:/volume1/NetBackup
+        path: /mnt/holocron_backup
+        fstype: nfs
+        opts: rw,vers=3
+        state: mounted
+
+- name: Add permanent mounts to control node.
+  hosts: dolores
+  become: true
+
+  tasks:
+    - name: Add CR1B media mount. 
+      ansible.posix.mount:
+        src: cr1b:/media
+        path: /mnt/cr1b_media
+        fstype: nfs4
+        opts: rw,proto=tcp,port=2049
+        state: mounted
+
+    - name: Add CR1B storage mount. 
+      ansible.posix.mount:
+        src: cr1b:/cistern/storage
+        path: /mnt/cr1b_storage
+        fstype: nfs4
+        opts: rw,proto=tcp,port=2049
+        state: mounted
+
+    - name: Add CR4DL media mount. 
+      ansible.posix.mount:
+        src: cr4dl:/tank/media
+        path: /mnt/cr4dl_media
         fstype: nfs4
         opts: defaults
         state: mounted
