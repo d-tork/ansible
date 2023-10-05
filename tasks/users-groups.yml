@@ -31,11 +31,12 @@
     - ansible
     - '{{ primary_user }}'
 
-- name: Create media group. 
-  ansible.builtin.group:
+- name: Create media user. 
+  ansible.builtin.user:
     name: media
-    gid: 1010
+    uid: 1010
     state: present
+    create_home: false
 
 - name: Add users to ssh group.
   ansible.builtin.user:
