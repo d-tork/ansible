@@ -11,13 +11,6 @@
     - name: Manage users and groups.
       ansible.builtin.import_tasks: tasks/users-groups.yml
 
-    - name: Update all packages.
-      tags: [vagrantskip]
-      ansible.builtin.apt: 
-        upgrade: yes
-        update_cache: yes
-        cache_valid_time: 86400  # one day
-
     - name: Harden security with role.
       ansible.builtin.include_role:
         name: d-tork.security
