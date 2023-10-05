@@ -4,6 +4,7 @@
   vars:
   vars_files:
     - ../vars/portainer.yml
+    - ../vars/vault.yml
 
   pre_tasks:
     - ansible.builtin.pip:
