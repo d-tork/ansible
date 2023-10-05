@@ -31,16 +31,16 @@
     - ansible
     - '{{ primary_user }}'
 
-- name: Add docker users to docker group.
-  # TODO move to a docker install role
-  ansible.builtin.command: "echo usermod -aG docker"
+- name: Create media group. 
+  ansible.builtin.group:
+    name: media
+    gid: 1010
+    state: present
 
-- name: Create media group.  # TODO 
-  ansible.builtin.command: "echo groupadd --gid 1010 media"
-
-- name: Add users to media group.  # TODO loop through users
-  ansible.builtin.command: "echo usermod -aG media"
-
-- name: Create plex user.
-  # TODO move to a plex install role
-  ansible.builtin.command: "echo useradd --uid 998 --gid 998 --no-create-home plex"
+- name: Add users to ssh group.
+  ansible.builtin.user:
+    name: '{{ item }}'
+    groups: [media]
+    append: true
+  with_items:
+    - '{{ primary_user }}'
