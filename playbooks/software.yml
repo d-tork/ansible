@@ -36,6 +36,18 @@
         name: 
           - mlocate  # easier version of `find`
 
+- name: Install python packages for control node.
+  hosts: dolores
+  become: false
+
+  tasks:
+    - name: Install packages with pip.
+      ansible.builtin.pip:
+        name:
+          - passlib
+          - paramiko
+          - ansible-lint
+
 - name: Install Plex server. 
   hosts: charlotte
   become: true
