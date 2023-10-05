@@ -21,6 +21,7 @@
         state: mounted
 
     - name: Add Holocron backup mount. 
+      tags: [vagrantskip]
       ansible.posix.mount:
         src: the-holocron:/volume1/NetBackup
         path: /mnt/holocron_backup
