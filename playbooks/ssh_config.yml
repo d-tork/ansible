@@ -7,22 +7,22 @@
     - ../vars/main.yml
 
   tasks: 
-    - name: Add authorized ssh keys from public_keys dir for ansible.
+    - name: Add authorized ssh keys from public_keys dir for ansible user.
       ansible.posix.authorized_key:
         user: ansible
         state: present
         key: '{{ item }}'
       with_file:
-        - public_keys/charlotte
+        - public_keys/dolores
         - public_keys/rehoboam
 
-    - name: Add authorized ssh keys from public_keys dir for me.
+    - name: Add authorized ssh keys from public_keys dir for my user.
       ansible.posix.authorized_key:
         user: '{{ primary_user }}'
         state: present
         key: '{{ item }}'
       with_file:
-        - public_keys/charlotte
+        - public_keys/dolores
         - public_keys/the-spine
         - public_keys/rehoboam
         #- public_keys/the-tern
