@@ -1,5 +1,6 @@
 ---
 - hosts: charlotte
+  tags: [future]
   become: true
   vars:
   vars_files:
