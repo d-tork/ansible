@@ -48,9 +48,10 @@
         user: '{{ primary_user }}'
         identity_file: "/home/{{ primary_user }}/.ssh/id_rsa.pub"
 
-    - name: Add ssh connections to dolores.
+    - name: Add ssh connections to charlotte.
       community.general.ssh_config:
-        host: dolores
-        hostname: 192.168.1.247
+        host: charlotte
+        hostname: 192.168.1.198
         user: '{{ primary_user }}'
         port: 4100
+        state: present
