@@ -1,13 +1,11 @@
 [presecurity]
-dolorespre		ansible_connection=ssh
-charlottepre	ansible_connection=ssh
 
 [presecurity:vars]
 ansible_user=dtork 
 
 [cr1b]
 dolores			ansible_connection=local  # remember to set this name in /etc/hosts
-# charlotte
+charlotte
 
 [cr4dl_active]
 #dolores
