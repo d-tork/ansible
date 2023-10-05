@@ -1,0 +1,15 @@
+---
+- name: Configure /etc/hosts.
+  hosts: all
+  become: true
+    
+  tasks:
+    - name: Ensure /etc/hosts has hosts for name resolution.
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        regexp: '{{ item.regexp }}'
+        line: '{{ item.line }}'
+      with_items:
+        - {regexp: 'cr1b', line: '192.168.1.249  cr1b'}
+        - {regexp: 'cr4dl', line: '192.168.1.234  cr4dl'}
+        - {regexp: 'the-holocron', line: '192.168.1.189  the-holocron'}
