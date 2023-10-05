@@ -15,10 +15,6 @@
     - role: geerlingguy.docker
       vars:
         docker_users: ['{{ primary_user }}']
-    - role: d-tork.plex
-      vars:
-        tautulli_install: false
-        plexupdate_install: true
 
   tasks: 
     - name: Install common software.
@@ -35,6 +31,19 @@
           - unattended-upgrades  # move to security role, also add open-ssh-server
 
     - name: Install extra software.
+      tags: [extras]
       ansible.builtin.apt: 
         name: 
           - mlocate  # easier version of `find`
+
+- name: Install Plex server. 
+  hosts: charlotte
+  become: true
+  vars_files:
+    - ../vars/main.yml
+
+  roles:
+    - role: d-tork.plex
+      vars:
+        tautulli_install: false
+        plexupdate_install: true
