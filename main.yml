@@ -18,8 +18,8 @@
 
 - ansible.builtin.import_playbook: playbooks/ssh_config.yml
 - ansible.builtin.import_playbook: playbooks/etc_hosts.yml
-- ansible.builtin.import_playbook: playbooks/mounts.yml
 - ansible.builtin.import_playbook: playbooks/software.yml
+- ansible.builtin.import_playbook: playbooks/mounts.yml
 - ansible.builtin.import_playbook: playbooks/gitconfig.yml
 - ansible.builtin.import_playbook: playbooks/dotfiles.yml
 - ansible.builtin.import_playbook: playbooks/portainer.yml

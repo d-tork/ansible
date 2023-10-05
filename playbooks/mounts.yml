@@ -3,6 +3,13 @@
   hosts: charlotte
   become: true
 
+  pre_tasks:
+    - name: Ensure nfs-utils are installed.
+      ansible.builtin.apt:
+        name: nfs-common
+        state: present
+        update_cache: true
+
   tasks:
     - name: Add CR1B media mount. 
       ansible.posix.mount:
