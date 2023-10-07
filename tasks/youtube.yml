@@ -1,0 +1,12 @@
+---
+- name: Install yt-dlp.
+  block:
+    - name: Add yt-dlp apt repository.
+      ansible.builtin.apt_repository:
+        repo: ppa:tomtomtom/yt-dlp
+
+    - name: Install yt-dlp from apt.
+      ansible.builtin.apt:
+        name: yt-dlp
+        state: present
+        update_cache: true
