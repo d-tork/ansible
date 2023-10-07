@@ -1,0 +1,27 @@
+---
+# bat, a cat clone with syntax highlighting
+# https://github.com/sharkdp/bat
+
+- name: Install batcat from apt.
+  ansible.builtin.apt:
+    name: bat
+
+- name: Ensure ~/.local/bin/ exists.
+  ansible.builtin.file:
+    path: '/home/{{ primary_user }}/.local/bin/'
+    state: directory
+    recurse: true
+    mode: '0700'
+    owner: '{{ primary_user }}'
+    group: '{{ primary_user }}'
+
+- name: Symlink batcat to bat.
+  ansible.builtin.file:
+    state: link
+    src: /usr/bin/batcat
+    path: '/home/{{ primary_user }}/.local/bin/bat'
+    mode: '0777'
+    owner: '{{ primary_user }}'
+    group: '{{ primary_user }}'
+
+

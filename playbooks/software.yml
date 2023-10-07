@@ -38,6 +38,10 @@
         name: 
           - mlocate  # easier version of `find`
 
+    - name: Install software with extra steps.
+      ansible.builtin.include_tasks: ../tasks/batcat.yml
+
+
 - name: Install python packages for control node.
   hosts: dolores
   become: false
