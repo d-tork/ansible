@@ -29,7 +29,8 @@
           - nfs-common
           - qemu-guest-agent
           - net-tools
-          - unattended-upgrades  # move to security role, also add open-ssh-server
+          - open-ssh-server
+          - unattended-upgrades  # move to security role
 
     - name: Install extra software.
       tags: [extras]
