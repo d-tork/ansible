@@ -20,6 +20,7 @@
     - name: Install common software.
       ansible.builtin.apt: 
         name: 
+          - manpages
           - git
           - vim
           - python3
