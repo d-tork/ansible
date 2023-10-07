@@ -5,10 +5,10 @@
   vars_files:
     - ../vars/main.yml
 
-  pre_tasks: 
+  pre_tasks:
     - name: Update repositories.
-      ansible.builtin.apt: 
-        update_cache: yes
+      ansible.builtin.apt:
+        update_cache: true
         cache_valid_time: 86400  # one day
 
   roles:
@@ -16,10 +16,10 @@
       vars:
         docker_users: ['{{ primary_user }}']
 
-  tasks: 
+  tasks:
     - name: Install common software.
-      ansible.builtin.apt: 
-        name: 
+      ansible.builtin.apt:
+        name:
           - manpages
           - git
           - vim
@@ -34,8 +34,8 @@
 
     - name: Install extra software.
       tags: [extras]
-      ansible.builtin.apt: 
-        name: 
+      ansible.builtin.apt:
+        name:
           - mlocate  # easier version of `find`
 
     - name: Install software with extra steps.
@@ -54,7 +54,7 @@
           - paramiko
           - ansible-lint
 
-- name: Install Plex server. 
+- name: Install Plex server.
   tags: [plex, media]
   hosts: charlotte
   become: true

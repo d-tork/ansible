@@ -23,5 +23,3 @@
     mode: '0777'
     owner: '{{ primary_user }}'
     group: '{{ primary_user }}'
-
-
