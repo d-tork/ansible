@@ -22,6 +22,7 @@
         name:
           - manpages-posix
           - man-db
+          - bash-completion
           - git
           - vim
           - python3
