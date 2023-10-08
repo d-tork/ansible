@@ -33,6 +33,8 @@
           - net-tools
           - openssh-server
           - unattended-upgrades  # move to security role
+          - tree
+          - btop
 
     - name: Install extra software from repositories.
       tags: [extras]
