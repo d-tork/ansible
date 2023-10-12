@@ -46,6 +46,9 @@
     - name: Install software with extra steps.
       ansible.builtin.include_tasks: ../tasks/batcat.yml
 
+    - name: Install youtube downloaders.
+      ansible.builtin.import_tasks: ../tasks/youtube.yml
+
 
 - name: Install python packages for control node.
   hosts: dolores
@@ -71,7 +74,3 @@
       vars:
         tautulli_install: false
         plexupdate_install: true
-
-  tasks:
-    - name: Install youtube downloaders.
-      ansible.builtin.import_tasks: ../tasks/youtube.yml
