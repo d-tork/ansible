@@ -35,6 +35,7 @@
           - unattended-upgrades  # move to security role
           - tree
           - btop
+          - rsnapshot
 
     - name: Install extra software from repositories.
       tags: [extras]
