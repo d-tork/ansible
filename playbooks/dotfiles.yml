@@ -16,6 +16,14 @@
           - .tmux.conf
           - .vimrc
 
+  post_tasks:
+    - name: Link tmux conf to byobu folder.
+      ansible.builtin.file:
+        src: '~/dotfiles/.tmux.conf'
+        dest: '~/.byobu/.tmux.conf'
+        state: link
+        force: true
+
 - name: Manage dotfiles with git repo on worker nodes.
   hosts: charlotte
   roles:
