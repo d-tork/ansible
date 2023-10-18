@@ -2,3 +2,4 @@
 # Override as 'vagrant' in inventory for testing; this is uid/gid 1000
 primary_user: "{{ inventory_primary_user | default('dtork') }}"
 ansible_user_password: "{{ vault_ansible_user_password | password_hash('sha512') }}"
+local_time_zone: "America/New_York"

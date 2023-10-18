@@ -16,6 +16,10 @@
       ansible.builtin.include_role:
         name: d-tork.security
 
+    - name: Set local time zone.
+      community.general.timezone:
+        name: "{{ local_time_zone }}"
+
 - ansible.builtin.import_playbook: playbooks/ssh_config.yml
 - ansible.builtin.import_playbook: playbooks/etc_hosts.yml
 - ansible.builtin.import_playbook: playbooks/software.yml
