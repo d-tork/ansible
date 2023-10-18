@@ -36,6 +36,7 @@
           - tree
           - btop
           - rsnapshot
+          - lnav
 
     - name: Install extra software from repositories.
       tags: [extras]
