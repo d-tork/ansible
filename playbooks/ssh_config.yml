@@ -27,6 +27,7 @@
         - public_keys/the-spine
         - public_keys/rehoboam
         #- public_keys/the-tern
+        - public_keys/the-sandpiper
 
 - name: Add ssh config for outgoing connections. 
   hosts: dolores
