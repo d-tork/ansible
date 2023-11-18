@@ -2,6 +2,7 @@
 # from galaxy
 - name: geerlingguy.docker
 - name: geerlingguy.dotfiles
+- name: geerlingguy.mysql
 
 # from Github
 - name: d-tork.security

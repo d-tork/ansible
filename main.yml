@@ -26,4 +26,5 @@
 - ansible.builtin.import_playbook: playbooks/mounts.yml
 - ansible.builtin.import_playbook: playbooks/gitconfig.yml
 - ansible.builtin.import_playbook: playbooks/portainer.yml
+- ansible.builtin.import_playbook: playbooks/database.yml
 
