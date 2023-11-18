@@ -57,3 +57,17 @@
         user: '{{ primary_user }}'
         port: 4100
         state: present
+
+    - name: Add ssh connections to the Spine.
+      community.general.ssh_config:
+        host: spine
+        hostname: 192.168.1.171
+        user: '{{ primary_user }}'
+        state: present
+
+    - name: Add ssh connections to Rehoboam.
+      community.general.ssh_config:
+        host: rehoboam
+        hostname: 192.168.1.230
+        user: '{{ primary_user }}'
+        state: present
