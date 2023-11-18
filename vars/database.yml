@@ -1,0 +1,5 @@
+---
+database_root_password: '{{ vault_database_root_password }}'
+
+database_user: dtork
+database_user_password: '{{ vault_database_user_password }}'
