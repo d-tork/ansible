@@ -20,6 +20,7 @@
         state: mounted
 
     - name: Add CR4DL media mount. 
+      tags: [deprecated]
       ansible.posix.mount:
         src: cr4dl:/tank/media
         path: /mnt/tankmedia
@@ -58,6 +59,7 @@
         state: mounted
 
     - name: Add CR4DL media mount. 
+      tags: [deprecated]
       ansible.posix.mount:
         src: cr4dl:/tank/media
         path: /mnt/cr4dl_media
