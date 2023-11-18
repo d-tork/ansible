@@ -1,7 +1,28 @@
 ---
-- name: Add authorized ssh keys.
+- name: Add authorized ssh keys for incoming connections to dolores.
   tags: [security]
-  hosts: all
+  hosts: dolores
+  become: true
+
+  vars_files:
+    - ../vars/main.yml
+
+  tasks: 
+    - name: Add authorized ssh keys from public_keys dir for my user.
+      ansible.posix.authorized_key:
+        user: '{{ primary_user }}'
+        state: present
+        key: '{{ item }}'
+      with_file:
+        - public_keys/dolores
+        - public_keys/the-spine
+        - public_keys/rehoboam
+        - public_keys/the-tern
+        - public_keys/the-sandpiper
+
+- name: Add authorized ssh keys for incoming connections to servers.
+  tags: [security]
+  hosts: servers  # e.g. charlotte
   become: true
 
   vars_files:
@@ -15,19 +36,15 @@
         key: '{{ item }}'
       with_file:
         - public_keys/dolores
-        - public_keys/rehoboam
 
     - name: Add authorized ssh keys from public_keys dir for my user.
+      # for servers, the only access point should be dolores
       ansible.posix.authorized_key:
         user: '{{ primary_user }}'
         state: present
         key: '{{ item }}'
       with_file:
         - public_keys/dolores
-        - public_keys/the-spine
-        - public_keys/rehoboam
-        #- public_keys/the-tern
-        - public_keys/the-sandpiper
 
 - name: Add ssh config for outgoing connections. 
   hosts: dolores
