@@ -19,6 +19,7 @@
         - public_keys/rehoboam
         - public_keys/the-tern
         - public_keys/the-sandpiper
+        - public_keys/vimemulator
 
 - name: Add authorized ssh keys for incoming connections to servers.
   tags: [security]
