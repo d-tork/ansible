@@ -7,7 +7,7 @@
   vars_files:
     - ../vars/main.yml
 
-  tasks: 
+  tasks:
     - name: Add authorized ssh keys from public_keys dir for my user.
       ansible.posix.authorized_key:
         user: '{{ primary_user }}'
@@ -20,6 +20,13 @@
         - public_keys/the-tern
         - public_keys/the-sandpiper
         - public_keys/vimemulator
+      notify: Restart ssh
+
+  handlers:
+    - name: Restart ssh
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
 
 - name: Add authorized ssh keys for incoming connections to servers.
   tags: [security]
@@ -29,7 +36,7 @@
   vars_files:
     - ../vars/main.yml
 
-  tasks: 
+  tasks:
     - name: Add authorized ssh keys from public_keys dir for ansible user.
       ansible.posix.authorized_key:
         user: ansible
@@ -37,6 +44,7 @@
         key: '{{ item }}'
       with_file:
         - public_keys/dolores
+      notify: Restart ssh
 
     - name: Add authorized ssh keys from public_keys dir for my user.
       # for servers, the only access point should be dolores
@@ -46,8 +54,15 @@
         key: '{{ item }}'
       with_file:
         - public_keys/dolores
+      notify: Restart ssh
 
-- name: Add ssh config for outgoing connections. 
+  handlers:
+    - name: Restart ssh
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
+
+- name: Add ssh config for outgoing connections.
   hosts: dolores
   become: true
   vars_files:
