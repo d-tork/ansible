@@ -37,6 +37,9 @@
           - btop
           - rsnapshot
           - lnav
+          - nmap
+          - mysql-client
+          - unzip
 
     - name: Install extra software from repositories.
       tags: [extras]
