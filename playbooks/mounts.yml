@@ -45,7 +45,7 @@
     - name: Add CR1B media mount. 
       ansible.posix.mount:
         src: cr1b:/media
-        path: /mnt/cr1b_media
+        path: /mnt/media
         fstype: nfs4
         opts: rw,proto=tcp,port=2049
         state: mounted
