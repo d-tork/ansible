@@ -1,10 +1,4 @@
 ---
-# bat, a cat clone with syntax highlighting
-# https://github.com/sharkdp/bat
-
-- name: Install batcat from apt.
-  ansible.builtin.apt:
-    name: bat
 
 - name: Ensure ~/.local/bin/ exists.
   ansible.builtin.file:
@@ -15,11 +9,26 @@
     owner: '{{ primary_user }}'
     group: '{{ primary_user }}'
 
+- name: Install batcat from apt.
+  # bat, a cat clone with syntax highlighting
+  # https://github.com/sharkdp/bat
+  ansible.builtin.apt:
+    name: bat
+
 - name: Symlink batcat to bat.
   ansible.builtin.file:
     state: link
     src: /usr/bin/batcat
     path: '/home/{{ primary_user }}/.local/bin/bat'
-    mode: '0777'
+    mode: '0755'
     owner: '{{ primary_user }}'
     group: '{{ primary_user }}'
+
+- name: Download mc binary from releases.
+  # mc, command line tool to provide unix commands to a MinIO setup
+  # https://min.io/docs/minio/linux/reference/minio-mc.html
+  ansible.builtin.get_url:
+    url: https://dl.min.io/client/mc/release/linux-amd64/mc
+    dest: '/home/{{ primary_user }}/.local/bin/mc'
+    mode: '0755'
+
