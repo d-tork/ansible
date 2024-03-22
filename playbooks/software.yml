@@ -61,10 +61,13 @@
   tasks:
     - name: Install packages with pip.
       ansible.builtin.pip:
-        name:
-          - passlib
-          - paramiko
-          - ansible-lint
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
+      loop:
+        - { name: passlib, state: present }
+        - { name: paramiko, state: present }
+        - { name: ansible, state: latest }
+        - { name: ansible-lint, state: present }
 
 - name: Install software specific to Charlotte.
   hosts: charlotte
