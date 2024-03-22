@@ -48,7 +48,7 @@
           - mlocate  # easier version of `find`
 
     - name: Install software with extra steps.
-      ansible.builtin.include_tasks: ../tasks/batcat.yml
+      ansible.builtin.include_tasks: ../tasks/additional_software.yml
 
     - name: Install youtube downloaders.
       ansible.builtin.import_tasks: ../tasks/youtube.yml
