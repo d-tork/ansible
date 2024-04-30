@@ -22,6 +22,7 @@
         - public_keys/vimemulator
         - public_keys/excelhelp
         - public_keys/arctic-tern
+        - public_keys/termius
       notify: Restart ssh
 
   handlers:
