@@ -40,6 +40,7 @@
           - nmap
           - mysql-client
           - unzip
+          - pv
 
     - name: Install extra software from repositories.
       tags: [extras]
