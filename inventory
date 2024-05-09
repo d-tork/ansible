@@ -6,9 +6,11 @@ ansible_user=dtork
 [cr1b]
 dolores			ansible_connection=local
 charlotte
+hale
 
 [servers]
 charlotte
+hale
 
 [cr4dl_active]
 #dolores
